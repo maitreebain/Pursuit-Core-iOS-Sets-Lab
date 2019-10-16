@@ -17,8 +17,6 @@ numbersWithNoDuplicates = [Int](setWithNoDuplicates).sorted()
 print(numbersWithNoDuplicates.sorted())
 assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
 
-//assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
-
 // Questions Two
 
 // Create a new array scoresThatAppearOnce that has all the elements from scores that appear exactly once.  It should be in the same order as the original.
@@ -28,7 +26,18 @@ let scores = [1, 77, 83, 32, 77, 77, 83, 32, 99]
 var scoresThatAppearOnce = [Int]()
 
 // Your code here
+var myNum: [Int] = []
 
+for num in scores {
+    if !scores.contains(num){
+        scoresThatAppearOnce.append(num)
+        myNum.append(num)
+    } else{
+        if let index = scoresThatAppearOnce.firstIndex(of: num){
+            scoresThatAppearOnce.remove(at: index)
+        }
+    }
+}
 //assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
 
 // Question Three
@@ -43,8 +52,13 @@ let arrTwo = [3,4,5,6,7]
 var arrThree: [Int] = []
 
 // Your code here
+let arrayOne = Set(arrOne)
+let arrayTwo = Set(arrTwo)
+arrThree = arrayOne.union(arrayTwo).sorted()
 
-//assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
+print(arrayOne.symmetricDifference(arrayTwo).sorted())
+
+assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
 
 // b.
 
@@ -56,8 +70,14 @@ let arrFive = [3,4,5,6,7]
 var arrSix: [Int] = []
 
 // Your code here
+let arrayFour = Set(arrFour)
+let arrayFive = Set(arrFive)
 
-//assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
+arrSix = arrayFour.intersection(arrFive).sorted()
+
+print(arrayFour.symmetricDifference(arrFive).sorted())
+
+assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
 
 // Question Four
 
@@ -71,6 +91,13 @@ let numsFour = [1, 3, 4, 5, 6, 7, 9]
 var allNumsWithNoDuplicates: [Int] = []
 
 // Your code here
+let numOne = Set(numsOne)
+let numTwo = Set(numsTwo)
+let numThree = Set(numsThree)
+let numFour = Set(numsFour)
+
+let newArray = numOne.symmetricDifference(numTwo).symmetricDifference(numThree).symmetricDifference(numFour)
+print(newArray.sorted())
 
 //assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was expecting [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], but got \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])")
 
@@ -90,6 +117,16 @@ var strTwoIsPangram: Bool = false
 var strThreeIsPangram: Bool = false
 
 // Your code here
+var strOneCopy = Set(strOne)
+var strTwoCopy = Set(strTwo)
+var strThreeCopy = Set(strThree)
+
+let alphabet = Set("abcdefghijklmnopqrstuvwxyz")
+
+strOneIsPangram = alphabet.isSubset(of: strOneCopy)
+strTwoIsPangram = alphabet.isSubset(of: strTwoCopy)
+strThreeIsPangram = alphabet.isSubset(of: strThreeCopy)
+
 
 //assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
 //assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
